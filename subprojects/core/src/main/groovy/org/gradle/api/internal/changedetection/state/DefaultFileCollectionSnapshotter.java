@@ -48,7 +48,7 @@ public class DefaultFileCollectionSnapshotter implements FileCollectionSnapshott
         if (files.isEmpty()) {
             return new FileCollectionSnapshotImpl(Collections.<String, IncrementalFileSnapshot>emptyMap());
         }
-        final Map<String, IncrementalFileSnapshot> snapshots = new HashMap<String, IncrementalFileSnapshot>();
+        final Map<String, IncrementalFileSnapshot> snapshots = new HashMap<String, IncrementalFileSnapshot>(files.size());
         cacheAccess.useCache("Create file snapshot", new Runnable() {
             public void run() {
                 for (File file : files) {
