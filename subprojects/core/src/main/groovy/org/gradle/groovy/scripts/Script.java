@@ -45,4 +45,13 @@ public abstract class Script extends groovy.lang.Script {
     public abstract void init(Object target, ServiceRegistry services);
 
     public abstract StandardOutputCapture getStandardOutputCapture();
+
+    @Override
+    public Object getProperty(String property) {
+        if (getBinding().hasVariable(property)) {
+            return super.getProperty(property);
+        } else {
+            return getMetaClass().getProperty(this, property);
+        }
+    }
 }
